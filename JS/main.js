@@ -84,3 +84,88 @@ if (logoLink) {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 }
+
+// ========== SMOOTH SCROLL ==========
+document
+  .querySelectorAll('a[href^="#"]:not(.menu-link):not(.logo-link)')
+  .forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      const hash = this.getAttribute("href");
+      if (hash === "#") return;
+      const target = document.querySelector(hash);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  });
+
+// ========== STATS COUNTER ANIMATION ==========
+const statsNumbers = document.querySelectorAll(".stat-number");
+let statsAnimated = false;
+
+function animateStats() {
+  if (statsAnimated) return;
+  statsAnimated = true;
+  statsNumbers.forEach((stat) => {
+    const final = parseInt(stat.getAttribute("data-count"));
+    let current = 0;
+    const increment = final / 40;
+    const update = () => {
+      current += increment;
+      if (current < final) {
+        stat.innerText = Math.ceil(current);
+        requestAnimationFrame(update);
+      } else stat.innerText = final;
+    };
+    update();
+  });
+}
+
+const heroStats = document.querySelector(".hero-stats");
+const observerStats = new IntersectionObserver(
+  (entries) => {
+    if (entries[0].isIntersecting) animateStats();
+  },
+  { threshold: 0.4 },
+);
+if (heroStats) observerStats.observe(heroStats);
+
+// ========== REVEAL ON SCROLL ==========
+const revealElements = document.querySelectorAll(
+  "section, .skill-card, .project-card, .article-card, .expertise-card",
+);
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) entry.target.classList.add("active");
+    });
+  },
+  { threshold: 0.1 },
+);
+revealElements.forEach((el) => {
+  el.classList.add("reveal");
+  revealObserver.observe(el);
+});
+
+// ========== PROJECT FILTERS ==========
+const filterBtns = document.querySelectorAll(".filter-btn");
+const projectCards = document.querySelectorAll(".project-card");
+filterBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const filter = btn.getAttribute("data-filter");
+    filterBtns.forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+    projectCards.forEach((card) => {
+      if (filter === "all" || card.getAttribute("data-category") === filter) {
+        card.style.display = "block";
+      } else card.style.display = "none";
+    });
+    document.querySelector(".projects-grid").style.display = "grid";
+  });
+});
+
+// ========== EMAILJS CONFIGURATION ==========
+(function () {
+  emailjs.init("bixCf2vUglqOaFmhU"); // PUBLIC KEY
+})();
