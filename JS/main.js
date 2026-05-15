@@ -209,3 +209,54 @@ if (contactForm) {
       });
   });
 }
+
+// ========== TÉLÉCHARGEMENT CV ==========
+function downloadCV() {
+  const link = document.createElement("a");
+  link.href = "CV_2026-05-11_Belotti_Wenze.pdf";
+  link.download = "CV_2026-05-11_Belotti_Wenze.pdf";
+  link.click();
+}
+
+document.getElementById("downloadCVBtn")?.addEventListener("click", (e) => {
+  e.preventDefault();
+  downloadCV();
+});
+document.getElementById("cvLinkMenu")?.addEventListener("click", (e) => {
+  e.preventDefault();
+  downloadCV();
+});
+
+// ========== RIPPLE EFFECT ==========
+document.querySelectorAll(".btn").forEach((btn) => {
+  btn.addEventListener("click", function (e) {
+    let ripple = document.createElement("span");
+    ripple.classList.add("ripple");
+    this.style.position = "relative";
+    this.style.overflow = "hidden";
+    const rect = this.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    ripple.style.width = ripple.style.height = `${size}px`;
+    ripple.style.left = `${e.clientX - rect.left - size / 2}px`;
+    ripple.style.top = `${e.clientY - rect.top - size / 2}px`;
+    this.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 500);
+  });
+});
+
+// ========== TILT EFFECT ==========
+projectCards.forEach((card) => {
+  card.addEventListener("mousemove", (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = (y - centerY) / 20;
+    const rotateY = (centerX - x) / 20;
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+  });
+  card.addEventListener("mouseleave", () => {
+    card.style.transform = "";
+  });
+});
