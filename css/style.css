@@ -1,0 +1,111 @@
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --accent: #3b82f6;
+  --accent-hover: #2563eb;
+  --card-bg: #ffffff;
+  --border-light: #e2e8f0;
+  --shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.05);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --header-bg: rgba(255, 255, 255, 0.8);
+  --badge-bg: #eef2ff;
+}
+
+.dark {
+  --bg-primary: #0a0c10;
+  --bg-secondary: #111827;
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --accent: #3b82f6;
+  --card-bg: #1e293b;
+  --border-light: #334155;
+  --shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.3);
+  --glass-bg: rgba(30, 41, 59, 0.7);
+  --header-bg: rgba(10, 12, 16, 0.8);
+  --badge-bg: #1e293b;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.5;
+  transition:
+    background 0.3s ease,
+    color 0.2s ease;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* HEADER */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  backdrop-filter: blur(12px);
+  background: var(--header-bg);
+  z-index: 1000;
+  padding: 1rem 0;
+  transition: all 0.3s;
+  border-bottom: 1px solid transparent;
+}
+
+.header.scrolled {
+  border-bottom: 1px solid var(--border-light);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.02);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent), #8b5cf6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: -1px;
+  transition: opacity 0.2s;
+}
+
+.logo-img {
+  height: 45px;
+  width: 55px;
+}
+
+.logo:hover {
+  opacity: 0.8;
+}
+
+.header-actions {
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+}
