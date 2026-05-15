@@ -57,3 +57,30 @@ menuLinks.forEach((link) =>
       closeMenu();
       return;
     }
+    const targetId = link.getAttribute("href");
+    if (targetId && targetId !== "#") {
+      e.preventDefault();
+      const targetEl = document.querySelector(targetId);
+      if (targetEl) {
+        targetEl.scrollIntoView({ behavior: "smooth" });
+        closeMenu();
+      }
+    } else closeMenu();
+  }),
+);
+
+// Fermer avec Echap
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && fullMenu.classList.contains("active")) {
+    closeMenu();
+  }
+});
+
+// ========== LOGO LIEN RETOUR EN HAUT ==========
+const logoLink = document.getElementById("logoLink");
+if (logoLink) {
+  logoLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
