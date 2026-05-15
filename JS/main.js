@@ -213,8 +213,8 @@ if (contactForm) {
 // ========== TÉLÉCHARGEMENT CV ==========
 function downloadCV() {
   const link = document.createElement("a");
-  link.href = "CV_2026-05-11_Belotti_Wenze.pdf";
-  link.download = "CV_2026-05-11_Belotti_Wenze.pdf";
+  link.href = "assets/CV_2026-05-11_Belotti_Wenze.pdf";
+  link.download = "assets/CV_2026-05-11_Belotti_Wenze.pdf";
   link.click();
 }
 
