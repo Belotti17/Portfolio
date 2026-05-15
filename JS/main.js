@@ -169,3 +169,43 @@ filterBtns.forEach((btn) => {
 (function () {
   emailjs.init("bixCf2vUglqOaFmhU"); // PUBLIC KEY
 })();
+const contactForm = document.getElementById("contactForm");
+const feedbackDiv = document.getElementById("formFeedback");
+
+if (contactForm) {
+  contactForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    if (!name || !email || !message) {
+      feedbackDiv.innerHTML = "Tous les champs sont requis.";
+      return;
+    }
+
+    feedbackDiv.innerHTML = "Envoi en cours...";
+
+    const templateParams = {
+      name: name,
+      email: email,
+      message: message,
+    };
+
+    emailjs
+      .send("service_3wsdlm8", "template_km66lrj", templateParams)
+      .then(() => {
+        feedbackDiv.innerHTML = " Message envoyé avec succès !";
+        contactForm.reset();
+
+        setTimeout(() => {
+          feedbackDiv.innerHTML = "";
+        }, 4000);
+      })
+      .catch((err) => {
+        console.error(err);
+        feedbackDiv.innerHTML = "Erreur lors de l’envoi.";
+      });
+  });
+}
