@@ -36,41 +36,29 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <!-- Loader -->
+    <!-- Loader Premium -->
     <div class="loader" id="loader">
+      <div class="loader-background"></div>
       <div class="loader-content">
-        <div class="loader-logo">
-          <img src="assets/logo/logo-b-removeBG.png" alt="Logo Belotti Wenze" />
+        <div class="loader-logo-wrapper">
+          <div class="loader-ring"></div>
+          <div class="loader-logo">
+            <img src="assets/logo/logo-b-removeBG.png" alt="Logo Belotti Wenze" />
+          </div>
         </div>
         <h2 class="loader-name">Belotti Wenze</h2>
         <p class="loader-text">Préparation de l'expérience numérique...</p>
         <div class="loader-progress">
           <div class="loader-progress-bar"></div>
         </div>
+        <div class="loader-percentage">0%</div>
       </div>
     </div>
 
     <!-- Custom Cursor -->
     <div class="cursor-dot" id="cursorDot"></div>
     <div class="cursor-circle" id="cursorCircle"></div>
-
-    <!-- Animated Text Marquee -->
-    <div class="marquee-top">
-      <div class="marquee-content-top">
-        <span>DÉVELOPPEMENT FULL-STACK</span>
-        <span class="marquee-separator">—</span>
-        <span>DESIGN UI/UX</span>
-        <span class="marquee-separator">—</span>
-        <span>EXPÉRIENCES NUMÉRIQUES</span>
-        <span class="marquee-separator">—</span>
-        <span>DÉVELOPPEMENT FULL-STACK</span>
-        <span class="marquee-separator">—</span>
-        <span>DESIGN UI/UX</span>
-        <span class="marquee-separator">—</span>
-        <span>EXPÉRIENCES NUMÉRIQUES</span>
-        <span class="marquee-separator">—</span>
-      </div>
-    </div>
+    <div class="cursor-glow" id="cursorGlow"></div>
 
     <header class="header" id="header">
       <div class="container header-container">
@@ -97,7 +85,9 @@
       </div>
     </header>
 
+    <!-- Fullscreen Menu avec bouton de fermeture optimisé -->
     <div class="fullscreen-menu" id="fullscreenMenu">
+      <div class="menu-background-pattern"></div>
       <button
         class="close-menu-btn"
         id="closeMenuBtn"
@@ -108,21 +98,29 @@
       <div class="menu-container">
         <nav class="menu-nav">
           <ul>
-            <li><a href="#hero" class="menu-link">Accueil</a></li>
-            <li><a href="#about" class="menu-link">À propos</a></li>
-            <li><a href="#works" class="menu-link">Mes œuvres</a></li>
-            <li><a href="#articles" class="menu-link">Articles & Notes</a></li>
+            <li><a href="#hero" class="menu-link" data-text="Accueil">Accueil</a></li>
+            <li><a href="#about" class="menu-link" data-text="À propos">À propos</a></li>
+            <li><a href="#works" class="menu-link" data-text="Mes œuvres">Mes œuvres</a></li>
+            <li><a href="#articles" class="menu-link" data-text="Articles">Articles & Notes</a></li>
             <li>
-              <a href="#cv" id="cvLinkMenu" class="menu-link">Obtenir mon CV</a>
+              <a href="#cv" id="cvLinkMenu" class="menu-link" data-text="Mon CV">Obtenir mon CV</a>
             </li>
-            <li><a href="#contact" class="menu-link">Contact</a></li>
+            <li><a href="#contact" class="menu-link" data-text="Contact">Contact</a></li>
           </ul>
         </nav>
+        <div class="menu-footer">
+          <div class="menu-social">
+            <a href="https://github.com/Belotti17" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/belotti17/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+          <p class="menu-copyright">© 2026 Belotti Wenze</p>
+        </div>
       </div>
     </div>
 
     <main>
       <section id="hero" class="hero">
+        <div class="hero-particles" id="heroParticles"></div>
         <div class="container hero-grid">
           <div class="hero-content">
             <div class="badge">✨Disponible pour des opportunités</div>
@@ -175,6 +173,8 @@
               />
             </div>
             <div class="profile-ring-hero"></div>
+            <div class="floating-badge floating-badge-1">FULL-STACK</div>
+            <div class="floating-badge floating-badge-2">UI/UX</div>
           </div>
         </div>
       </section>
@@ -184,6 +184,7 @@
           <div class="section-header">
             <span class="section-tag">À propos</span>
             <h2>Qui suis-je ?</h2>
+            <div class="section-line"></div>
           </div>
           <div class="about-grid">
             <div class="about-text">
@@ -249,6 +250,7 @@
           <div class="section-header">
             <span class="section-tag">Expertise technique</span>
             <h2>Stack & Compétences</h2>
+            <div class="section-line"></div>
           </div>
           <div class="skills-grid">
             <div class="skill-card">
@@ -322,6 +324,7 @@
           <div class="section-header">
             <span class="section-tag">Réalisations</span>
             <h2>Mes œuvres</h2>
+            <div class="section-line"></div>
           </div>
           <div class="filter-buttons">
             <button class="filter-btn active" data-filter="all">Tous</button>
@@ -358,10 +361,10 @@
             </div>
             <div class="project-card" data-category="frontend">
               <div class="project-img">
-                <i class="fab fa-vuejs"></i> Portfolio Animé
+                <i class="fab fa-vuejs"></i> Carte Animé
               </div>
               <div class="project-content">
-                <h3>Portfolio Créatif</h3>
+                <h3>Card Design</h3>
                 <p>Site vitrine avec animations GSAP et design épuré.</p>
                 <div class="project-stack">
                   <span>HTML5</span><span>CSS3</span><span>GSAP</span
@@ -369,7 +372,7 @@
                 </div>
                 <div class="project-links">
                   <a
-                    href="https://portfolio-zeta-silk-46.vercel.app/"
+                    href="https://belotti-card-design.vercel.app/"
                     class="project-link"
                     >Voir <i class="fas fa-external-link-alt"></i></a
                   ><a
@@ -406,15 +409,15 @@
                 <i class="fas fa-store"></i> E-commerce
               </div>
               <div class="project-content">
-                <h3>Smile Fashion</h3>
+                <h3>Shop Master</h3>
                 <p>Panier, paiement Stripe, dashboard admin Laravel.</p>
                 <div class="project-stack">
-                  <span>Laravel</span><span>MySQL</span><span>Tailwind</span>
+                  <span>Laravel</span><span>PostgreSQL</span><span>Tailwind</span><span>Angular</span>
                 </div>
                 <div class="project-links">
                   <a href="#" class="project-link"
                     >Voir <i class="fas fa-external-link-alt"></i></a
-                  ><a href="#" class="project-link"
+                  ><a href="https://github.com/Belotti17/shopmaster" class="project-link"
                     >Code <i class="fab fa-github"></i
                   ></a>
                 </div>
@@ -437,6 +440,7 @@
           <div class="section-header">
             <span class="section-tag">Blog & Veille</span>
             <h2>Articles & Notes</h2>
+            <div class="section-line"></div>
           </div>
           <div class="articles-grid">
             <div class="article-card">
@@ -497,6 +501,7 @@
           <div class="section-header">
             <span class="section-tag">Contact</span>
             <h2>Discutons de votre projet</h2>
+            <div class="section-line"></div>
           </div>
 
           <div class="contact-wrapper">
@@ -561,17 +566,21 @@
     <div class="marquee-bottom">
       <div class="marquee-content-bottom">
         <span>DÉVELOPPEMENT FULL-STACK</span>
-        <span class="marquee-separator">—</span>
+        <span class="marquee-separator">✦</span>
         <span>DESIGN UI/UX</span>
-        <span class="marquee-separator">—</span>
+        <span class="marquee-separator">✦</span>
         <span>EXPÉRIENCES NUMÉRIQUES</span>
-        <span class="marquee-separator">—</span>
+        <span class="marquee-separator">✦</span>
+        <span>CRÉATIVITÉ & INNOVATION</span>
+        <span class="marquee-separator">✦</span>
         <span>DÉVELOPPEMENT FULL-STACK</span>
-        <span class="marquee-separator">—</span>
+        <span class="marquee-separator">✦</span>
         <span>DESIGN UI/UX</span>
-        <span class="marquee-separator">—</span>
+        <span class="marquee-separator">✦</span>
         <span>EXPÉRIENCES NUMÉRIQUES</span>
-        <span class="marquee-separator">—</span>
+        <span class="marquee-separator">✦</span>
+        <span>CRÉATIVITÉ & INNOVATION</span>
+        <span class="marquee-separator">✦</span>
       </div>
     </div>
 
