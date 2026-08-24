@@ -1,25 +1,39 @@
-// ========== LOADER ==========
+// ========== LOADER PREMIUM ==========
 document.addEventListener('DOMContentLoaded', () => {
   const loader = document.getElementById('loader');
+  const percentage = document.querySelector('.loader-percentage');
+  let progress = 0;
   
-  setTimeout(() => {
-    loader.classList.add('hidden');
-    document.body.style.overflow = 'visible';
-  }, 1800);
+  const progressInterval = setInterval(() => {
+    progress += Math.random() * 15;
+    if (progress >= 100) {
+      progress = 100;
+      clearInterval(progressInterval);
+      setTimeout(() => {
+        loader.classList.add('hidden');
+        document.body.style.overflow = 'visible';
+      }, 500);
+    }
+    if (percentage) {
+      percentage.textContent = Math.floor(progress) + '%';
+    }
+  }, 150);
   
   document.body.style.overflow = 'hidden';
 });
 
-// ========== CUSTOM CURSOR ==========
+// ========== CUSTOM CURSOR PREMIUM ==========
 const cursorDot = document.getElementById('cursorDot');
 const cursorCircle = document.getElementById('cursorCircle');
-const interactiveElements = document.querySelectorAll('a, button, .skill-card, .project-card, .article-card, .expertise-card');
+const cursorGlow = document.getElementById('cursorGlow');
+const interactiveElements = document.querySelectorAll('a, button, .skill-card, .project-card, .article-card, .expertise-card, .filter-btn');
 
 const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
 if (isDesktop) {
   let mouseX = 0, mouseY = 0;
   let circleX = 0, circleY = 0;
+  let glowX = 0, glowY = 0;
   
   document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
@@ -30,8 +44,8 @@ if (isDesktop) {
   });
   
   function animateCircle() {
-    circleX += (mouseX - circleX) * 0.1;
-    circleY += (mouseY - circleY) * 0.1;
+    circleX += (mouseX - circleX) * 0.15;
+    circleY += (mouseY - circleY) * 0.15;
     
     cursorCircle.style.left = circleX + 'px';
     cursorCircle.style.top = circleY + 'px';
@@ -39,28 +53,62 @@ if (isDesktop) {
     requestAnimationFrame(animateCircle);
   }
   
+  function animateGlow() {
+    glowX += (mouseX - glowX) * 0.05;
+    glowY += (mouseY - glowY) * 0.05;
+    
+    cursorGlow.style.left = glowX + 'px';
+    cursorGlow.style.top = glowY + 'px';
+    
+    requestAnimationFrame(animateGlow);
+  }
+  
   animateCircle();
+  animateGlow();
   
   interactiveElements.forEach(element => {
     element.addEventListener('mouseenter', () => {
       cursorDot.classList.add('active');
       cursorCircle.classList.add('active');
+      cursorGlow.classList.add('active');
     });
     
     element.addEventListener('mouseleave', () => {
       cursorDot.classList.remove('active');
       cursorCircle.classList.remove('active');
+      cursorGlow.classList.remove('active');
     });
   });
 } else {
   cursorDot.style.display = 'none';
   cursorCircle.style.display = 'none';
+  cursorGlow.style.display = 'none';
   document.body.style.cursor = 'auto';
 }
 
+// ========== HERO PARTICLES ==========
+function createParticles() {
+  const container = document.getElementById('heroParticles');
+  if (!container) return;
+  
+  for (let i = 0; i < 20; i++) {
+    const particle = document.createElement('div');
+    particle.classList.add('hero-particle');
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.top = Math.random() * 100 + '%';
+    particle.style.animationDelay = Math.random() * 10 + 's';
+    particle.style.animationDuration = (Math.random() * 5 + 5) + 's';
+    particle.style.width = (Math.random() * 3 + 2) + 'px';
+    particle.style.height = particle.style.width;
+    container.appendChild(particle);
+  }
+}
+
+createParticles();
+
 // ========== ANIMATED TEXT HERO ==========
 const dynamicTextHero = document.getElementById('dynamicTextHero');
-const wordsHero = ['DÉVELOPPE.', 'DESIGNE.', 'INNOVE.', 'CRÉE.', 'RÉSOUS.'];
+const wordsHero = ['DÉVELOPPE.', 'DESIGNE.', 'INNOVE.', 'CRÉE.', 'RÉSOUS.', 'EXCELLE.'];
 let wordIndexHero = 0;
 let letterIndexHero = 0;
 let isDeletingHero = false;
@@ -136,7 +184,7 @@ window.addEventListener("scroll", () => {
   else header.classList.remove("scrolled");
 });
 
-// ========== FULLSCREEN MENU ==========
+// ========== FULLSCREEN MENU OPTIMISÉ ==========
 const hamburger = document.getElementById("hamburgerBtn");
 const fullMenu = document.getElementById("fullscreenMenu");
 const closeMenuBtn = document.getElementById("closeMenuBtn");
@@ -145,11 +193,23 @@ const menuLinks = document.querySelectorAll(".menu-link");
 function openMenu() {
   fullMenu.classList.add("active");
   document.body.style.overflow = "hidden";
+  
+  // Animation du hamburger en X
+  const spans = hamburger.querySelectorAll('span');
+  spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+  spans[1].style.opacity = '0';
+  spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
 }
 
 function closeMenu() {
   fullMenu.classList.remove("active");
   document.body.style.overflow = "";
+  
+  // Reset du hamburger
+  const spans = hamburger.querySelectorAll('span');
+  spans[0].style.transform = '';
+  spans[1].style.opacity = '';
+  spans[2].style.transform = '';
 }
 
 hamburger?.addEventListener("click", openMenu);
@@ -376,10 +436,10 @@ if (isDesktop && heroImage) {
     const windowWidth = window.innerWidth;
     const windowHeight = window.innerHeight;
     
-    const offsetX = (clientX / windowWidth - 0.5) * 10;
-    const offsetY = (clientY / windowHeight - 0.5) * 10;
+    const offsetX = (clientX / windowWidth - 0.5) * 15;
+    const offsetY = (clientY / windowHeight - 0.5) * 15;
     
-    heroImage.style.transform = `translate(${offsetX * 0.5}px, ${offsetY * 0.5}px)`;
+    heroImage.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
   });
 }
 
@@ -397,4 +457,5 @@ window.addEventListener('resize', () => {
 });
 
 console.log('Portfolio Belotti Wenze chargé avec succès !');
-console.log('Toutes les animations sont actives.');
+console.log('Toutes les animations premium sont actives.');
+console.log('Menu hamburger optimisé avec fermeture au même endroit.');
