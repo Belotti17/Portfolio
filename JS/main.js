@@ -455,7 +455,3 @@ window.addEventListener('resize', () => {
     // Handle resize events here
   }, 250);
 });
-
-console.log('Portfolio Belotti Wenze chargé avec succès !');
-console.log('Toutes les animations premium sont actives.');
-console.log('Menu hamburger optimisé avec fermeture au même endroit.');
