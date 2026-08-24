@@ -363,7 +363,7 @@ if (contactForm) {
     emailjs
       .send("service_3wsdlm8", "template_km66lrj", templateParams)
       .then(() => {
-        feedbackDiv.innerHTML = "✅ Message envoyé avec succès !";
+        feedbackDiv.innerHTML = "Message envoyé avec succès !";
         contactForm.reset();
 
         setTimeout(() => {
