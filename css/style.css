@@ -381,7 +381,6 @@ a {
 ========================= */
 .header {
   position: fixed;
-  top: 2.5rem;
   left: 0;
   width: 100%;
   backdrop-filter: blur(12px);
