@@ -1,3 +1,108 @@
+// ========== LOADER ==========
+document.addEventListener('DOMContentLoaded', () => {
+  const loader = document.getElementById('loader');
+  
+  setTimeout(() => {
+    loader.classList.add('hidden');
+    document.body.style.overflow = 'visible';
+  }, 1800);
+  
+  document.body.style.overflow = 'hidden';
+});
+
+// ========== CUSTOM CURSOR ==========
+const cursorDot = document.getElementById('cursorDot');
+const cursorCircle = document.getElementById('cursorCircle');
+const interactiveElements = document.querySelectorAll('a, button, .skill-card, .project-card, .article-card, .expertise-card');
+
+const isDesktop = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+if (isDesktop) {
+  let mouseX = 0, mouseY = 0;
+  let circleX = 0, circleY = 0;
+  
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    
+    cursorDot.style.left = mouseX + 'px';
+    cursorDot.style.top = mouseY + 'px';
+  });
+  
+  function animateCircle() {
+    circleX += (mouseX - circleX) * 0.1;
+    circleY += (mouseY - circleY) * 0.1;
+    
+    cursorCircle.style.left = circleX + 'px';
+    cursorCircle.style.top = circleY + 'px';
+    
+    requestAnimationFrame(animateCircle);
+  }
+  
+  animateCircle();
+  
+  interactiveElements.forEach(element => {
+    element.addEventListener('mouseenter', () => {
+      cursorDot.classList.add('active');
+      cursorCircle.classList.add('active');
+    });
+    
+    element.addEventListener('mouseleave', () => {
+      cursorDot.classList.remove('active');
+      cursorCircle.classList.remove('active');
+    });
+  });
+} else {
+  cursorDot.style.display = 'none';
+  cursorCircle.style.display = 'none';
+  document.body.style.cursor = 'auto';
+}
+
+// ========== ANIMATED TEXT HERO ==========
+const dynamicTextHero = document.getElementById('dynamicTextHero');
+const wordsHero = ['DÉVELOPPE.', 'DESIGNE.', 'INNOVE.', 'CRÉE.', 'RÉSOUS.'];
+let wordIndexHero = 0;
+let letterIndexHero = 0;
+let isDeletingHero = false;
+
+function typeEffectHero() {
+  const currentWord = wordsHero[wordIndexHero];
+  
+  if (!isDeletingHero) {
+    dynamicTextHero.textContent = currentWord.substring(0, letterIndexHero + 1);
+    letterIndexHero++;
+    
+    if (letterIndexHero === currentWord.length) {
+      isDeletingHero = true;
+      setTimeout(typeEffectHero, 2000);
+      return;
+    }
+  } else {
+    dynamicTextHero.textContent = currentWord.substring(0, letterIndexHero - 1);
+    letterIndexHero--;
+    
+    if (letterIndexHero === 0) {
+      isDeletingHero = false;
+      wordIndexHero = (wordIndexHero + 1) % wordsHero.length;
+    }
+  }
+  
+  setTimeout(typeEffectHero, isDeletingHero ? 50 : 100);
+}
+
+if (dynamicTextHero) {
+  setTimeout(typeEffectHero, 1500);
+}
+
+// ========== MARQUEE DUPLICATION ==========
+const marqueeContents = document.querySelectorAll('.marquee-content-top, .marquee-content-bottom');
+marqueeContents.forEach(marqueeContent => {
+  if (marqueeContent) {
+    const clone = marqueeContent.cloneNode(true);
+    marqueeContent.parentElement.appendChild(clone);
+  }
+});
+
 // ========== THEME MANAGEMENT ==========
 const themeToggle = document.getElementById("themeToggle");
 const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
@@ -17,6 +122,7 @@ function loadTheme() {
   if (saved) setTheme(saved);
   else setTheme(prefersDark.matches ? "dark" : "light");
 }
+
 themeToggle?.addEventListener("click", () => {
   const isDark = document.body.classList.contains("dark");
   setTheme(isDark ? "light" : "dark");
@@ -30,7 +136,7 @@ window.addEventListener("scroll", () => {
   else header.classList.remove("scrolled");
 });
 
-// ========== FULLSCREEN MENU HAMBURGER AVEC EFFET REBOND + BOUTON FERMETURE ==========
+// ========== FULLSCREEN MENU ==========
 const hamburger = document.getElementById("hamburgerBtn");
 const fullMenu = document.getElementById("fullscreenMenu");
 const closeMenuBtn = document.getElementById("closeMenuBtn");
@@ -159,6 +265,7 @@ filterBtns.forEach((btn) => {
     projectCards.forEach((card) => {
       if (filter === "all" || card.getAttribute("data-category") === filter) {
         card.style.display = "block";
+        card.style.animation = "fadeInUp 0.5s ease";
       } else card.style.display = "none";
     });
     document.querySelector(".projects-grid").style.display = "grid";
@@ -196,7 +303,7 @@ if (contactForm) {
     emailjs
       .send("service_3wsdlm8", "template_km66lrj", templateParams)
       .then(() => {
-        feedbackDiv.innerHTML = " Message envoyé avec succès !";
+        feedbackDiv.innerHTML = "✅ Message envoyé avec succès !";
         contactForm.reset();
 
         setTimeout(() => {
@@ -205,7 +312,7 @@ if (contactForm) {
       })
       .catch((err) => {
         console.error(err);
-        feedbackDiv.innerHTML = "Erreur lors de l’envoi.";
+        feedbackDiv.innerHTML = "Erreur lors de l'envoi.";
       });
   });
 }
@@ -214,7 +321,7 @@ if (contactForm) {
 function downloadCV() {
   const link = document.createElement("a");
   link.href = "assets/CV_2026-05-11_Belotti_Wenze.pdf";
-  link.download = "assets/CV_2026-05-11_Belotti_Wenze.pdf";
+  link.download = "CV_Belotti_Wenze.pdf";
   link.click();
 }
 
@@ -260,3 +367,34 @@ projectCards.forEach((card) => {
     card.style.transform = "";
   });
 });
+
+// ========== MOUSE PARALLAX EFFECT ==========
+const heroImage = document.querySelector('.hero-image');
+if (isDesktop && heroImage) {
+  document.addEventListener('mousemove', (e) => {
+    const { clientX, clientY } = e;
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+    
+    const offsetX = (clientX / windowWidth - 0.5) * 10;
+    const offsetY = (clientY / windowHeight - 0.5) * 10;
+    
+    heroImage.style.transform = `translate(${offsetX * 0.5}px, ${offsetY * 0.5}px)`;
+  });
+}
+
+// ========== PERFORMANCE OPTIMIZATION ==========
+window.addEventListener('scroll', () => {
+  // Add scroll-based effects here if needed
+}, { passive: true });
+
+let resizeTimeout;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(() => {
+    // Handle resize events here
+  }, 250);
+});
+
+console.log('Portfolio Belotti Wenze chargé avec succès !');
+console.log('Toutes les animations sont actives.');
