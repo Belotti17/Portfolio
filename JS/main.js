@@ -189,10 +189,15 @@ const hamburger = document.getElementById("hamburgerBtn");
 const fullMenu = document.getElementById("fullscreenMenu");
 const closeMenuBtn = document.getElementById("closeMenuBtn");
 const menuLinks = document.querySelectorAll(".menu-link");
+let lastFocusedElement;
 
 function openMenu() {
+  lastFocusedElement = document.activeElement;
   fullMenu.classList.add("active");
   document.body.style.overflow = "hidden";
+  hamburger.setAttribute("aria-expanded", "true");
+  hamburger.setAttribute("aria-label", "Fermer le menu");
+  closeMenuBtn.focus();
   
   // Animation du hamburger en X
   const spans = hamburger.querySelectorAll('span');
@@ -204,6 +209,9 @@ function openMenu() {
 function closeMenu() {
   fullMenu.classList.remove("active");
   document.body.style.overflow = "";
+  hamburger.setAttribute("aria-expanded", "false");
+  hamburger.setAttribute("aria-label", "Ouvrir le menu");
+  lastFocusedElement?.focus();
   
   // Reset du hamburger
   const spans = hamburger.querySelectorAll('span');
@@ -214,6 +222,9 @@ function closeMenu() {
 
 hamburger?.addEventListener("click", openMenu);
 closeMenuBtn?.addEventListener("click", closeMenu);
+fullMenu?.addEventListener("click", (e) => {
+  if (e.target === fullMenu) closeMenu();
+});
 
 menuLinks.forEach((link) =>
   link.addEventListener("click", (e) => {
@@ -237,6 +248,22 @@ menuLinks.forEach((link) =>
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && fullMenu.classList.contains("active")) {
     closeMenu();
+  }
+
+  if (e.key === "Tab" && fullMenu.classList.contains("active")) {
+    const focusableElements = fullMenu.querySelectorAll(
+      'a[href], button:not([disabled])',
+    );
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    if (e.shiftKey && document.activeElement === firstElement) {
+      e.preventDefault();
+      lastElement.focus();
+    } else if (!e.shiftKey && document.activeElement === lastElement) {
+      e.preventDefault();
+      firstElement.focus();
+    }
   }
 });
 
@@ -332,10 +359,13 @@ filterBtns.forEach((btn) => {
 
 // ========== EMAILJS CONFIGURATION ==========
 (function () {
-  emailjs.init("bixCf2vUglqOaFmhU"); // PUBLIC KEY
+  if (typeof emailjs !== "undefined") {
+    emailjs.init("bixCf2vUglqOaFmhU");
+  }
 })();
 const contactForm = document.getElementById("contactForm");
 const feedbackDiv = document.getElementById("formFeedback");
+const submitButton = contactForm?.querySelector('button[type="submit"]');
 
 if (contactForm) {
   contactForm.addEventListener("submit", function (e) {
@@ -346,11 +376,17 @@ if (contactForm) {
     const message = document.getElementById("message").value.trim();
 
     if (!name || !email || !message) {
-      feedbackDiv.innerHTML = "Tous les champs sont requis.";
+      feedbackDiv.textContent = "Tous les champs sont requis.";
       return;
     }
 
-    feedbackDiv.innerHTML = "Envoi en cours...";
+    if (typeof emailjs === "undefined") {
+      feedbackDiv.textContent = "Le formulaire est temporairement indisponible.";
+      return;
+    }
+
+    feedbackDiv.textContent = "Envoi en cours...";
+    submitButton.disabled = true;
 
     const templateParams = {
       name: name,
@@ -361,16 +397,19 @@ if (contactForm) {
     emailjs
       .send("service_3wsdlm8", "template_km66lrj", templateParams)
       .then(() => {
-        feedbackDiv.innerHTML = "Message envoyé avec succès !";
+        feedbackDiv.textContent = "Message envoyé avec succès !";
         contactForm.reset();
 
         setTimeout(() => {
-          feedbackDiv.innerHTML = "";
+          feedbackDiv.textContent = "";
         }, 4000);
       })
       .catch((err) => {
         console.error(err);
-        feedbackDiv.innerHTML = "Erreur lors de l'envoi.";
+        feedbackDiv.textContent = "Erreur lors de l'envoi.";
+      })
+      .finally(() => {
+        submitButton.disabled = false;
       });
   });
 }
