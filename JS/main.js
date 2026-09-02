@@ -187,41 +187,32 @@ window.addEventListener("scroll", () => {
 // ========== FULLSCREEN MENU OPTIMISÉ ==========
 const hamburger = document.getElementById("hamburgerBtn");
 const fullMenu = document.getElementById("fullscreenMenu");
-const closeMenuBtn = document.getElementById("closeMenuBtn");
 const menuLinks = document.querySelectorAll(".menu-link");
 let lastFocusedElement;
 
 function openMenu() {
   lastFocusedElement = document.activeElement;
   fullMenu.classList.add("active");
+  hamburger.classList.add("is-open");
   document.body.style.overflow = "hidden";
   hamburger.setAttribute("aria-expanded", "true");
   hamburger.setAttribute("aria-label", "Fermer le menu");
-  closeMenuBtn.focus();
-  
-  // Animation du hamburger en X
-  const spans = hamburger.querySelectorAll('span');
-  spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-  spans[1].style.opacity = '0';
-  spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+  menuLinks[0]?.focus();
 }
 
 function closeMenu() {
   fullMenu.classList.remove("active");
+  hamburger.classList.remove("is-open");
   document.body.style.overflow = "";
   hamburger.setAttribute("aria-expanded", "false");
   hamburger.setAttribute("aria-label", "Ouvrir le menu");
   lastFocusedElement?.focus();
-  
-  // Reset du hamburger
-  const spans = hamburger.querySelectorAll('span');
-  spans[0].style.transform = '';
-  spans[1].style.opacity = '';
-  spans[2].style.transform = '';
 }
 
-hamburger?.addEventListener("click", openMenu);
-closeMenuBtn?.addEventListener("click", closeMenu);
+hamburger?.addEventListener("click", () => {
+  if (fullMenu.classList.contains("active")) closeMenu();
+  else openMenu();
+});
 fullMenu?.addEventListener("click", (e) => {
   if (e.target === fullMenu) closeMenu();
 });
