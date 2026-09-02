@@ -483,20 +483,34 @@ a {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.hamburger.is-open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.is-open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.hamburger.is-open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
 /* =========================
    FULLSCREEN MENU OPTIMISÉ
 ========================= */
 .fullscreen-menu {
   position: fixed;
   inset: 0;
-  background: var(--bg-primary);
-  backdrop-filter: blur(20px);
-  z-index: 1100;
+  background: transparent;
+  backdrop-filter: none;
+  z-index: 900;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: stretch;
+  justify-content: flex-end;
   visibility: hidden;
   opacity: 0;
+  pointer-events: none;
   overflow-y: auto;
   min-height: 100dvh;
   padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
@@ -508,7 +522,20 @@ a {
 .fullscreen-menu.active {
   visibility: visible;
   opacity: 1;
-  animation: menuBounce 0.5s cubic-bezier(0.34, 1.2, 0.64, 1) forwards;
+  pointer-events: auto;
+}
+
+.fullscreen-menu::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 12, 16, 0.56);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.fullscreen-menu.active::before {
+  opacity: 1;
 }
 
 .menu-background-pattern {
@@ -534,45 +561,33 @@ a {
   }
 }
 
-/* Bouton de fermeture au même endroit que le hamburger */
-.close-menu-btn {
-  position: fixed;
-  top: 3.5rem;
-  right: 2rem;
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: var(--glass-bg);
-  border: 1px solid var(--border-light);
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: var(--text-primary);
-  transition: all 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1200;
-}
-
-.close-menu-btn:hover {
-  background: var(--accent);
-  color: white;
-  transform: rotate(90deg) scale(1.1);
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
-}
-
 .menu-container {
   text-align: center;
   position: relative;
   z-index: 1;
-  width: 100%;
-  max-width: 600px;
+  width: min(100%, 520px);
+  max-width: 520px;
+  min-height: 100%;
   padding: 2rem;
-  margin: auto;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--bg-primary);
+  box-shadow: -24px 0 60px rgba(0, 0, 0, 0.18);
+  transform: translateX(100%);
+  opacity: 0;
+  transition:
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.35s ease;
+}
+
+.fullscreen-menu.active .menu-container {
+  transform: translateX(0);
+  opacity: 1;
 }
 
 .menu-link:focus-visible,
-.close-menu-btn:focus-visible,
 .hamburger:focus-visible,
 .theme-toggle:focus-visible,
 a:focus-visible,
@@ -587,7 +602,25 @@ button:focus-visible {
 
 .menu-nav li {
   margin: 1.5rem 0;
+  opacity: 0;
+  transform: translateX(28px);
+  transition:
+    opacity 0.35s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
+
+.fullscreen-menu.active .menu-nav li {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.fullscreen-menu.active .menu-nav li:nth-child(1) { transition-delay: 0.12s; }
+.fullscreen-menu.active .menu-nav li:nth-child(2) { transition-delay: 0.17s; }
+.fullscreen-menu.active .menu-nav li:nth-child(3) { transition-delay: 0.22s; }
+.fullscreen-menu.active .menu-nav li:nth-child(4) { transition-delay: 0.27s; }
+.fullscreen-menu.active .menu-nav li:nth-child(5) { transition-delay: 0.32s; }
+.fullscreen-menu.active .menu-nav li:nth-child(6) { transition-delay: 0.37s; }
+.fullscreen-menu.active .menu-nav li:nth-child(7) { transition-delay: 0.42s; }
 
 .menu-link {
   font-size: 2rem;
@@ -1857,11 +1890,9 @@ h2 {
     font-size: 1.6rem;
   }
 
-  .close-menu-btn {
-    top: 1rem;
-    right: 1rem;
-    width: 40px;
-    height: 40px;
+  .menu-container {
+    width: min(100%, 440px);
+    padding: 6rem 1.5rem 2rem;
   }
 
   .expertise-cards {
@@ -1907,9 +1938,6 @@ h2 {
     top: 0;
   }
 
-  .close-menu-btn {
-    top: 2.5rem;
-  }
 }
 
 @media (max-width: 480px) {
@@ -2005,10 +2033,6 @@ h2 {
     font-size: 0.7rem;
   }
 
-  .close-menu-btn {
-    top: 2rem;
-    right: 1rem;
-  }
 }
 
 @media (max-width: 360px) {
