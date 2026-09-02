@@ -194,6 +194,7 @@ function openMenu() {
   lastFocusedElement = document.activeElement;
   fullMenu.classList.add("active");
   hamburger.classList.add("is-open");
+  document.body.classList.add("menu-open");
   document.body.style.overflow = "hidden";
   hamburger.setAttribute("aria-expanded", "true");
   hamburger.setAttribute("aria-label", "Fermer le menu");
@@ -203,6 +204,7 @@ function openMenu() {
 function closeMenu() {
   fullMenu.classList.remove("active");
   hamburger.classList.remove("is-open");
+  document.body.classList.remove("menu-open");
   document.body.style.overflow = "";
   hamburger.setAttribute("aria-expanded", "false");
   hamburger.setAttribute("aria-label", "Ouvrir le menu");
