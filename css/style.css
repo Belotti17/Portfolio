@@ -1548,6 +1548,16 @@ h2 {
   border-color: var(--accent);
 }
 
+.contact-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.whatsapp-btn {
+  justify-content: center;
+}
+
 .form-group {
   position: relative;
   margin-bottom: 1.5rem;
@@ -1643,19 +1653,29 @@ h2 {
 
 .footer-container {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   gap: 3rem;
   flex-wrap: wrap;
   margin-bottom: 2rem;
+  text-align: center;
 }
 
 .footer-col {
   min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .footer-col:first-child {
   max-width: 350px;
+}
+
+.footer-logo {
+  width: 55px;
+  height: 45px;
+  margin-bottom: 1rem;
 }
 
 .footer-col p {
