@@ -78,7 +78,13 @@
             <i class="fas fa-moon"></i>
             <i class="fas fa-sun"></i>
           </button>
-          <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+          <button
+            class="hamburger"
+            id="hamburgerBtn"
+            aria-label="Ouvrir le menu"
+            aria-expanded="false"
+            aria-controls="fullscreenMenu"
+          >
             <span></span><span></span><span></span>
           </button>
         </div>
@@ -86,7 +92,13 @@
     </header>
 
     <!-- Fullscreen Menu avec bouton de fermeture optimisé -->
-    <div class="fullscreen-menu" id="fullscreenMenu">
+    <div
+      class="fullscreen-menu"
+      id="fullscreenMenu"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Menu principal"
+    >
       <div class="menu-background-pattern"></div>
       <button
         class="close-menu-btn"
@@ -96,11 +108,12 @@
         <i class="fas fa-times"></i>
       </button>
       <div class="menu-container">
-        <nav class="menu-nav">
+        <nav class="menu-nav" aria-label="Navigation principale">
           <ul>
             <li><a href="#hero" class="menu-link" data-text="Accueil">Accueil</a></li>
             <li><a href="#about" class="menu-link" data-text="À propos">À propos</a></li>
             <li><a href="#works" class="menu-link" data-text="Mes œuvres">Mes œuvres</a></li>
+            <li><a href="#stack" class="menu-link" data-text="Compétences">Compétences</a></li>
             <li><a href="#articles" class="menu-link" data-text="Articles">Articles & Notes</a></li>
             <li>
               <a
@@ -116,8 +129,8 @@
         </nav>
         <div class="menu-footer">
           <div class="menu-social">
-            <a href="https://github.com/Belotti17" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/belotti17/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/Belotti17" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/belotti17/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
           </div>
           <p class="menu-copyright">© 2026 Belotti Wenze</p>
         </div>
@@ -358,11 +371,13 @@
                     href="https://github.com/kadea-academy-learners/capstone-x-clone-adonis-Belotti17"
                     class="project-link"
                     target="_blank"
+                    rel="noopener noreferrer"
                     >Voir <i class="fas fa-external-link-alt"></i></a
                   ><a
                     href="https://github.com/kadea-academy-learners/capstone-x-clone-adonis-Belotti17"
                     class="project-link"
                     target="_blank"
+                    rel="noopener noreferrer"
                     >Code <i class="fab fa-github"></i
                   ></a>
                 </div>
@@ -384,11 +399,13 @@
                     href="https://belotti-card-design.vercel.app/"
                     class="project-link"
                     target="_blank"
+                    rel="noopener noreferrer"
                     >Voir <i class="fas fa-external-link-alt"></i></a
                   ><a
                     href="https://github.com/Belotti17/Portfolio"
                     class="project-link"
                     target="_blank"
+                    rel="noopener noreferrer"
                     >Code <i class="fab fa-github"></i
                   ></a>
                 </div>
@@ -407,7 +424,7 @@
                   <span>Figma</span>
                 </div>
                 <div class="project-links">
-                  <a href="https://www.figma.com/design/SNy58wpkApu3gajR4E9Kkt/Untitled?node-id=0-1&m=dev&t=6RAhARA9x1rEfodO-1" class="project-link" target="_blank"
+                  <a href="https://www.figma.com/design/SNy58wpkApu3gajR4E9Kkt/Untitled?node-id=0-1&m=dev&t=6RAhARA9x1rEfodO-1" class="project-link" target="_blank" rel="noopener noreferrer"
                     >Voir <i class="fas fa-external-link-alt"></i></a
                   >
                 </div>
@@ -424,9 +441,7 @@
                   <span>Laravel</span><span>PostgreSQL</span><span>Tailwind</span><span>Angular</span>
                 </div>
                 <div class="project-links">
-                  <a href="#" class="project-link"
-                    >Voir <i class="fas fa-external-link-alt"></i></a
-                  ><a href="https://github.com/Belotti17/shopmaster" class="project-link" target="_blank"
+                  <a href="https://github.com/Belotti17/shopmaster" class="project-link" target="_blank" rel="noopener noreferrer"
                     >Code <i class="fab fa-github"></i
                   ></a>
                 </div>
@@ -437,6 +452,7 @@
             <a
               href="https://github.com/Belotti17"
               target="_blank"
+              rel="noopener noreferrer"
               class="btn btn-secondary"
               >Voir plus de projets sur GitHub <i class="fab fa-github"></i
             ></a>
@@ -466,6 +482,7 @@
                   href="https://fr.legacy.reactjs.org/docs/optimizing-performance.html"
                   class="read-more"
                   target="_blank"
+                  rel="noopener noreferrer"
                   >Lire l'article →</a
                 >
               </div>
@@ -483,6 +500,7 @@
                   href="https://eleven-labs.com/blog/design-system/"
                   class="read-more"
                   target="_blank"
+                  rel="noopener noreferrer"
                   >Lire l'article →</a
                 >
               </div>
@@ -500,6 +518,7 @@
                   href="https://fr.scribd.com/document/851748660/TP-Docker-Nodejs-2"
                   class="read-more"
                   target="_blank"
+                  rel="noopener noreferrer"
                   >Lire l'article →</a
                 >
               </div>
@@ -522,6 +541,8 @@
                 <input
                   type="text"
                   id="name"
+                  name="name"
+                  autocomplete="name"
                   placeholder="Nom complet"
                   required
                 />
@@ -529,7 +550,14 @@
               </div>
 
               <div class="form-group">
-                <input type="email" id="email" placeholder="Email" required />
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  autocomplete="email"
+                  placeholder="Email"
+                  required
+                />
                 <i class="fas fa-envelope"></i>
               </div>
 
@@ -537,6 +565,8 @@
                 <textarea
                   id="message"
                   rows="5"
+                  name="message"
+                  autocomplete="off"
                   placeholder="Message..."
                   required
                 ></textarea>
@@ -547,7 +577,7 @@
                 Envoyer <i class="fas fa-paper-plane"></i>
               </button>
 
-              <div id="formFeedback"></div>
+              <div id="formFeedback" aria-live="polite"></div>
             </form>
           </div>
         </div>
@@ -574,28 +604,6 @@
       </section>
     </main>
 
-    <!-- Marquee Bottom -->
-    <div class="marquee-bottom">
-      <div class="marquee-content-bottom">
-        <span>DÉVELOPPEMENT FULL-STACK</span>
-        <span class="marquee-separator">✦</span>
-        <span>DESIGN UI/UX</span>
-        <span class="marquee-separator">✦</span>
-        <span>EXPÉRIENCES NUMÉRIQUES</span>
-        <span class="marquee-separator">✦</span>
-        <span>CRÉATIVITÉ &amp; INNOVATION</span>
-        <span class="marquee-separator">✦</span>
-        <span>DÉVELOPPEMENT FULL-STACK</span>
-        <span class="marquee-separator">✦</span>
-        <span>DESIGN UI/UX</span>
-        <span class="marquee-separator">✦</span>
-        <span>EXPÉRIENCES NUMÉRIQUES</span>
-        <span class="marquee-separator">✦</span>
-        <span>CRÉATIVITÉ &amp; INNOVATION</span>
-        <span class="marquee-separator">✦</span>
-      </div>
-    </div>
-
     <footer class="footer">
       <div class="container footer-container">
         <div class="footer-col">
@@ -612,15 +620,15 @@
         <div class="footer-col">
           <h4>CONTACTEZ-MOI</h4>
           <a href="mailto:belottiwenze@gmail.com">belottiwenze@gmail.com</a>
-          <p>+243 81 013 47 42</p>
+          <a href="tel:+243810134742">+243 81 013 47 42</a>
         </div>
         <div class="footer-col">
           <h4>SUIVEZ-MOI</h4>
           <div class="footer-social">
-            <a href="https://github.com/Belotti17" target="_blank"
+            <a href="https://github.com/Belotti17" target="_blank" rel="noopener noreferrer"
               ><i class="fab fa-github"></i
             ></a>
-            <a href="https://www.linkedin.com/in/belotti17/" target="_blank"
+            <a href="https://www.linkedin.com/in/belotti17/" target="_blank" rel="noopener noreferrer"
               ><i class="fab fa-linkedin-in"></i
             ></a>
           </div>
