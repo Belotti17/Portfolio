@@ -497,6 +497,9 @@ a {
   justify-content: center;
   visibility: hidden;
   opacity: 0;
+  overflow-y: auto;
+  min-height: 100dvh;
+  padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
   transition:
     visibility 0.4s,
     opacity 0.4s;
@@ -565,6 +568,17 @@ a {
   width: 100%;
   max-width: 600px;
   padding: 2rem;
+  margin: auto;
+}
+
+.menu-link:focus-visible,
+.close-menu-btn:focus-visible,
+.hamburger:focus-visible,
+.theme-toggle:focus-visible,
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
 }
 
 .menu-nav ul {
