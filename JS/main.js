@@ -217,13 +217,11 @@ closeMenuBtn?.addEventListener("click", closeMenu);
 
 menuLinks.forEach((link) =>
   link.addEventListener("click", (e) => {
-    if (link.getAttribute("href") === "#cv") {
-      e.preventDefault();
-      downloadCV();
+    const targetId = link.getAttribute("href");
+    if (link.target === "_blank" || targetId?.startsWith("http")) {
       closeMenu();
       return;
     }
-    const targetId = link.getAttribute("href");
     if (targetId && targetId !== "#") {
       e.preventDefault();
       const targetEl = document.querySelector(targetId);
@@ -376,23 +374,6 @@ if (contactForm) {
       });
   });
 }
-
-// ========== TÉLÉCHARGEMENT CV ==========
-function downloadCV() {
-  const link = document.createElement("a");
-  link.href = "assets/CV_2026-05-11_Belotti_Wenze.pdf";
-  link.download = "CV_Belotti_Wenze.pdf";
-  link.click();
-}
-
-document.getElementById("downloadCVBtn")?.addEventListener("click", (e) => {
-  e.preventDefault();
-  downloadCV();
-});
-document.getElementById("cvLinkMenu")?.addEventListener("click", (e) => {
-  e.preventDefault();
-  downloadCV();
-});
 
 // ========== RIPPLE EFFECT ==========
 document.querySelectorAll(".btn").forEach((btn) => {
