@@ -405,6 +405,11 @@ body.menu-open .header {
   box-shadow: none;
 }
 
+body.menu-open .theme-toggle {
+  visibility: hidden;
+  pointer-events: none;
+}
+
 .header-container {
   display: flex;
   justify-content: space-between;
@@ -519,6 +524,8 @@ body.menu-open .header {
   visibility: hidden;
   opacity: 0;
   pointer-events: none;
+  width: 100%;
+  height: 100dvh;
   min-height: 100dvh;
   padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
   transition:
