@@ -322,61 +322,6 @@ a {
 }
 
 /* =========================
-   MARQUEE TOP & BOTTOM
-========================= */
-.marquee-top,
-.marquee-bottom {
-  overflow: hidden;
-  background: #0a0c10;
-  padding: 0.8rem 0;
-  position: relative;
-  z-index: 100;
-}
-
-.marquee-top {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 999;
-}
-
-.marquee-content-top,
-.marquee-content-bottom {
-  display: flex;
-  animation: marquee 25s linear infinite;
-  white-space: nowrap;
-  gap: 2rem;
-}
-
-.marquee-content-bottom {
-  animation-direction: reverse;
-}
-
-.marquee-content-top span,
-.marquee-content-bottom span {
-  color: #ffffff;
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
-  font-weight: 600;
-  opacity: 0.8;
-}
-
-.marquee-separator {
-  color: var(--accent) !important;
-  opacity: 1 !important;
-}
-
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-/* =========================
    HEADER
 ========================= */
 .header {
@@ -1066,12 +1011,12 @@ button:focus-visible {
 
 .floating-badge-1 {
   top: 20%;
-  left: -10%;
+  left: -7%;
 }
 
 .floating-badge-2 {
   bottom: 20%;
-  right: -10%;
+  right: -5%;
   animation-delay: 2s;
 }
 
@@ -1444,7 +1389,7 @@ h2 {
 }
 
 .project-img-bank {
-  --project-image: url("https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1200&q=85");
+  --project-image: url("https://res.cloudinary.com/dzsinldkl/image/upload/v1788295493/nova_hso9fp.png");
 }
 
 .project-img-shop {
