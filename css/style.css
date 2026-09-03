@@ -293,8 +293,8 @@ a {
 }
 
 .cursor-glow {
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   background: radial-gradient(circle, rgba(59, 130, 246, 0.2), transparent);
   border-radius: 50%;
   position: fixed;
