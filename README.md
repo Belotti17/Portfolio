@@ -1,147 +1,162 @@
-# Belotti Wenze — Portfolio Developer
+# Belotti Wenze — Portfolio Personnel
 
-Bienvenue sur mon portfolio personnel.
-Ce projet présente mon univers en tant que **Développeur Full-Stack & UI/UX Designer**, mes compétences, mes projets et mes expériences dans le développement web moderne.
+Portfolio personnel et site vitrine conçu pour présenter mes compétences, mes projets, et mon parcours en tant que **Développeur Full-Stack & UI/UX Designer**.
 
----
-
-## Portfolio en ligne
-
-**Live Demo :**
-https://portfolio-five-self-72.vercel.app/
+[Voir le site en ligne](https://portfolio-five-self-72.vercel.app/)
 
 ---
 
-# Aperçu
+## À propos
 
-Ce portfolio a été conçu pour offrir une expérience moderne, fluide et responsive avec :
+Je suis **Belotti Wenze**, un développeur web passionné par la création d’expériences numériques modernes, performantes et intuitives. Mon approche associe la qualité du code, la rigueur technique et l’esthétique du design pour construire des interfaces à la fois fonctionnelles et mémorables.
 
-- Design moderne et élégant
-- Animations fluides
-- Dark / Light mode
-- Responsive Design
-- Formulaire de contact fonctionnel avec EmailJS
-- Navigation fullscreen animée
-- Effets interactifs avancés
-- Optimisation des performances
+Ce portfolio met en avant :
+
+- mes compétences techniques,
+- mes projets réalisés,
+- mon profil professionnel,
+- et mes coordonnées pour d’éventuelles collaborations ou opportunités.
 
 ---
 
-# Technologies utilisées
+## Aperçu du projet
 
-## Frontend
+Ce portfolio a été conçu pour offrir une expérience utilisateur fluide et moderne, avec :
+
+- un design premium et minimaliste,
+- une navigation immersive et interactive,
+- un mode sombre / clair,
+- des animations élégantes et dynamiques,
+- une interface responsive sur mobile, tablette et desktop,
+- un formulaire de contact fonctionnel via EmailJS,
+- un accès rapide à mon CV et à mes réseaux professionnels.
+
+---
+
+## Stack technique
+
+### Frontend
 
 - HTML5
 - CSS3
 - JavaScript (Vanilla JS)
 
-## UI / UX
+### UI / UX
 
-- Figma
-- Responsive Design
-- Animations CSS
-- UX moderne
+- Design responsive
+- Animations CSS / JS
+- Expérience utilisateur centrée sur le produit
+- Prototypage visuel / interface moderne
 
-## Outils & Services
+### Outils & services
 
 - Git & GitHub
 - EmailJS
 - Font Awesome
 - Google Fonts
+- Vercel
 
 ---
 
-# Structure du projet
+## Structure du projet
 
 ```bash
 Portfolio/
-│
 ├── assets/
 │   ├── images/
 │   └── logo/
-│
 ├── css/
 │   └── style.css
-│
 ├── JS/
 │   └── main.js
-│
 ├── index.html
-│
-└── README.md
+├── README.md
+└── LICENSE
 ```
 
 ---
 
-# Fonctionnalités principales
+## Fonctionnalités principales
 
--Hero Section moderne  
--Menu fullscreen responsive  
--Mode sombre / clair  
--Animations au scroll  
--Filtrage des projets  
--Formulaire de contact connecté à EmailJS  
--Téléchargement du CV  
--Responsive mobile/tablette/desktop
-
----
-
-# Contact
-
-Email :  
-belottiwenze@gmail.com
-
-LinkedIn :  
-https://www.linkedin.com/in/belotti17/
-
-GitHub :
-https://github.com/Belotti17
+- Hero section moderne et impactante
+- Menu plein écran responsive
+- Mode sombre / clair
+- Animations au scroll et effets visuels
+- Présentation des projets et compétences
+- Formulaire de contact connecté à EmailJS
+- Accès direct au CV
+- Compatibilité multi-écran
+- Expérience utilisateur optimisée et professionnelle
 
 ---
 
-# Installation locale
+## Installation locale
 
-Clonez le projet :
+1. Clonez le dépôt :
 
 ```bash
 git clone https://github.com/Belotti17/Portfolio.git
 ```
 
-Ouvrez ensuite le dossier :
+2. Accédez au dossier du projet :
 
 ```bash
 cd Portfolio
 ```
 
-Puis lancez simplement `index.html` dans votre navigateur.
+3. Ouvrez le fichier `index.html` directement dans votre navigateur.
+
+Pour un rendu plus fidèle au projet, vous pouvez également lancer un serveur local :
+
+```bash
+python -m http.server 8000
+```
+
+Puis ouvrez :
+
+```bash
+http://localhost:8000
+```
 
 ---
 
-# Déploiement
+## Déploiement
 
-Le projet peut être déployé gratuitement sur :
+Ce projet peut être déployé facilement sur plusieurs plateformes, notamment :
 
-- GitHub Pages
 - Vercel
 - Netlify
+- GitHub Pages
 - Render
 
 ---
 
-# Auteur
+## Contact
 
-**Belotti Wenze**
+- Email : belottiwenze@gmail.com
+- LinkedIn : https://www.linkedin.com/in/belotti17/
+- GitHub : https://github.com/Belotti17
+- Portfolio : https://portfolio-five-self-72.vercel.app/
+
+---
+
+## À propos de l’auteur
+
+**Belotti Wenze**  
 Développeur Full-Stack & UI/UX Designer
 
----
-
-# Licence
-
-Ce projet est sous licence MIT.  
-Vous êtes libre de l’utiliser et de l’adapter.
+Passionné par la création de produits numériques élégants, fonctionnels et orientés utilisateur.
 
 ---
 
-# Support
+## Licence
 
-Si ce projet vous plaît, n’hésitez pas à laisser une étoile ⭐ sur le repository GitHub.
+Ce projet est sous licence MIT. Vous êtes libre de l’utiliser, de le modifier et de le distribuer, à condition de respecter les termes de cette licence.
+
+---
+
+## Soutien
+
+Si vous aimez ce projet, n’hésitez pas à lui donner une étoile sur GitHub et à le partager.
+
+Merci pour votre intérêt !
